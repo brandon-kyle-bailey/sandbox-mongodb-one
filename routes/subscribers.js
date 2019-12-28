@@ -5,12 +5,9 @@ const router = express.Router();
 
 // get all subs
 router.get('/', async(req, res) => {
-    try {
-        const subscribers = await Subsriber.find();
-        res.json(subscribers);
-    } catch (err) {
-        res.status(500).json({ message: err.message })
-    }
+    const subscribers = await Subsriber.find()
+        .catch(err => res.status(500).json({ message: err.message }));
+    if (subscribers) res.json(subscribers);
 });
 
 // get single sub
@@ -26,13 +23,9 @@ router.post('/', async(req, res) => {
         subscribedToChannel: req.body.subscribedToChannel
     });
 
-    try {
-        const newSubscriber = await subscriber.save();
-        res.status(201).json(newSubscriber);
-
-    } catch (err) {
-        res.status(400).json({ message: err.message })
-    }
+    const newSubscriber = await subscriber.save()
+        .catch((er) => res.status(400).json({ message: err.message }));
+    if (newSubscriber) res.status(201).json(newSubscriber);
 });
 
 // update single sub
@@ -48,24 +41,17 @@ router.patch('/:id', getSubscriber, async(req, res) => {
         res.subscriber.subscribedToChannel = req.body.subscribedToChannel;
     }
 
-    try {
-        const updatedSubscriber = await res.subscriber.save();
-        res.json(updatedSubscriber);
-
-    } catch (err) {
-        res.status(400).json({ message: err.message })
-    }
+    const updatedSubscriber = await res.subscriber.save()
+        .catch(err => res.status(400).json({ message: err.message }));
+    if (updatedSubscriber) res.json(updatedSubscriber);
 });
 
 // delete single sub
 router.delete('/:id', getSubscriber, async(req, res) => {
 
-    try {
-        await res.subscriber.remove();
-        res.json({ message: "Deleted subscriber" })
-    } catch (err) {
-        res.status(500).json({ message: err.message })
-    }
+    await res.subscriber.remove()
+        .catch(err => res.status(500).json({ message: err.message }));
+    res.json({ message: "Deleted subscriber" })
 
 });
 
@@ -73,16 +59,11 @@ router.delete('/:id', getSubscriber, async(req, res) => {
 async function getSubscriber(req, res, callback) {
     let subscriber;
 
-    try {
-        subscriber = await Subsriber.findById(req.params.id);
-
-        if (!subscriber) return res.status(404).json({
-            message: 'Cannot find subscriber'
-        });
-
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+    subscriber = await Subsriber.findById(req.params.id)
+        .catch(err => res.status(500).json({ message: err.message }));
+    if (!subscriber) return res.status(404).json({
+        message: 'Cannot find subscriber'
+    });
     res.subscriber = subscriber;
     callback();
 }

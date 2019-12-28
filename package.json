@@ -1,0 +1,29 @@
+{
+    "name": "sandbox-mongodb-one",
+    "version": "1.0.0",
+    "description": "Exploration of MongoDB cluster &amp; schema creation.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/brandon-kyle-bailey/sandbox-mongodb-one.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/brandon-kyle-bailey/sandbox-mongodb-one/issues"
+    },
+    "homepage": "https://github.com/brandon-kyle-bailey/sandbox-mongodb-one#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mongoose": "^5.8.3"
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0",
+        "nodemon": "^2.0.2"
+    }
+}

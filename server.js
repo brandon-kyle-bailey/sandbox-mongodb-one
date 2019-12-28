@@ -17,3 +17,5 @@ app.use(express.json());
 app.use('/subscribers', subscribersRouter);
 
 app.listen(PORT, () => console.log("Server listening..."));
+
+console.log({ USER, PASSWD, DBURL, PORT, SILENTWARNINGS });

@@ -15,8 +15,8 @@ const subscriberSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     }
-})
+}, { collection: "subscribers" })
 
-const Subscriber = mongoose.model('Subscriber', subscriberSchema);
+const Subscriber = mongoose.model('subscriber', subscriberSchema);
 
 export default Subscriber;

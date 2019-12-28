@@ -1,11 +1,12 @@
 import mongoose from 'mongoose';
+mongoose.set('debug', true);
 
 const subscriberSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
-    subscriberToChannel: {
+    subscribedToChannel: {
         type: String,
         required: true
     },
@@ -14,8 +15,8 @@ const subscriberSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     }
-});
+})
 
-const SubscriberModel = mongoose.model('Subscriber', subscriberSchema);
+const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
-export default SubscriberModel;
+export default Subscriber;

@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+mongoose.set('debug', true);
 
 import { USER, PASSWD, DBURL, PORT, SILENTWARNINGS } from './config.js';
 

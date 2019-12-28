@@ -1,15 +1,19 @@
 import express from 'express';
+import SubsriberModel from '../models/subscriber.js';
 
 const router = express.Router();
 
-
 // get all subs
-router.get('/', (req, res) => {
-    res.send('Hello world!');
+router.get('/', async(req, res) => {
+    try {
+        const subscribers = SubsriberModel.find();
+    } catch {
+
+    }
 });
 // get single sub
 router.get('/:id', (req, res) => {
-
+    res.send(req.params.id);
 });
 // update single sub
 // patch over put here to only update information specified
